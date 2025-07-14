@@ -332,7 +332,7 @@ mov ebx, user_name          ; buffer pointer
 *Screenshot showing error when input > 99*
 
 **Invalid Range:**
-![Invalid Range Error](images/error-invalid-range.png)
+![Invalid Range Error](images/error-invaild-range.png)
 *Screenshot showing error for invalid array range*
 
 ### 4. 🧮 Mathematical Verification

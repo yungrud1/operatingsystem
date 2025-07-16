@@ -1,6 +1,6 @@
-# 💻 Assembly Programming Tasks
+# Assembly Programming Tasks
 
-## 📚 Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Programs Implemented](#programs-implemented)
   - [Task 1: Basic Arithmetic](#task-1-basic-arithmetic)
@@ -10,8 +10,8 @@
 - [Task 3: Build Management with Makefile](#task-3-build-management-with-makefile)
 - [Project Summary](#project-summary)
 - [Program Execution Results](#program-execution-results)
-- [Key Assembly Programming Concepts](#📋-key-assembly-programming-concepts-demonstrated)
-- [Screenshots and Demonstrations](#📸-screenshots-and-demonstrations)
+- [Key Assembly Programming Concepts](#key-assembly-programming-concepts-demonstrated)
+- [Screenshots and Demonstrations](#screenshots-and-demonstrations)
 
 ## Overview
 This document describes the implementation and testing of assembly language programs across multiple tasks, demonstrating fundamental assembly concepts including arithmetic operations, loops, conditionals, and array operations, along with build management using Makefiles.
@@ -246,7 +246,7 @@ $ make task1
 (builds only task1 if not already built)
 ```
 
-## 📋 Key Assembly Programming Concepts Demonstrated
+## Key Assembly Programming Concepts Demonstrated
 
 ### Task 1: Basic Program Structure
 Understanding of assembly program organization with proper segments:
@@ -304,7 +304,7 @@ mov ebx, user_name          ; buffer pointer
     jmp .read_name_loop
 ```
 
-## 📸 Screenshots and Demonstrations
+## Screenshots and Demonstrations
 
 ### 1. 🔨 Build Process
 **Complete compilation with make:**

@@ -1,6 +1,5 @@
-# Makefile for Operating System Kernel
-# Builds a minimal OS kernel that writes 0xCAFEBABE to the eax register
-# Extended to support C functions called from assembly
+# Makefile for Operating System Kernel - Part 2: Interactive Terminal
+# Builds OS kernel with interrupt-driven keyboard input and terminal interface
 
 # Compiler and tools
 NASM = nasm
@@ -164,24 +163,25 @@ show-structure:
 
 # Help target
 help:
-	@echo "Available targets:"
+	@echo "Available targets for Worksheet 2 Part 2:"
 	@echo "  all           - Build the complete OS ISO image (default)"
 	@echo "  run           - Build and run the OS in QEMU emulator"
-	@echo "  run-curses    - Run the OS in QEMU curses mode for framebuffer testing"
+	@echo "  run-curses    - Run the OS in QEMU curses mode for interactive testing"
 	@echo "  check-log     - Check execution results in log file"
 	@echo "  clean         - Remove all generated files"
 	@echo "  show-structure - Display the directory structure"
 	@echo "  help          - Show this help message"
 	@echo ""
-	@echo "Usage:"
-	@echo "  make          - Build the OS with framebuffer I/O support"
-	@echo "  make run-curses - Run with framebuffer display (use telnet localhost 45454 to quit)"
-	@echo "  make check-log - Verify C functions executed correctly"
+	@echo "Part 2 Features:"
+	@echo "  - Interrupt-driven keyboard input (IRQ 1)"
+	@echo "  - Interactive terminal interface"
+	@echo "  - Command parsing and execution"
+	@echo "  - Input buffering with circular buffer"
 	@echo ""
-	@echo "C Functions implemented:"
-	@echo "  sum_of_three(1,2,3)  - Returns 6"
-	@echo "  factorial(5)         - Returns 120"
-	@echo "  fibonacci(10)        - Returns 55"
-	@echo "  power(2,8)           - Returns 256"
+	@echo "Usage:"
+	@echo "  make run-curses - Run with interactive terminal"
+	@echo "  Commands: help, version, echo [text], clear"
+	@echo ""
+	@echo "To quit QEMU: telnet localhost 45454 then type 'quit'"
 
-.PHONY: all run clean show-structure help check-log
+.PHONY: all run run-curses clean show-structure help check-log

@@ -329,7 +329,7 @@ $ make check-log
 ![Success Verification](images/success-log.png)
 *Screenshot: Terminal showing successful execution verification*
 
-## 🔍 Troubleshooting & Common Issues
+## Troubleshooting & Common Issues
 
 ### **Build Problems**
 ```bash

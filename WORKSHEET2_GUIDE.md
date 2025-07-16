@@ -67,14 +67,14 @@ make clean && make all && make run-curses
 
 | Feature | Part 1 | Part 2 |
 |---------|--------|--------|
-| **Framebuffer I/O** | ✅ | ✅ |
-| **C Functions** | ✅ | ✅ |
-| **Color Display** | ✅ | ✅ |
-| **Interrupt System** | ❌ | ✅ |
-| **Keyboard Input** | ❌ | ✅ |
-| **Interactive Terminal** | ❌ | ✅ |
-| **Command Processing** | ❌ | ✅ |
-| **Real-time Input** | ❌ | ✅ |
+| **Framebuffer I/O** | Yes | Yes |
+| **C Functions** | Yes | Yes |
+| **Color Display** | Yes | Yes |
+| **Interrupt System** | No | Yes |
+| **Keyboard Input** | No | Yes |
+| **Interactive Terminal** | No | Yes |
+| **Command Processing** | No | Yes |
+| **Real-time Input** | No | Yes |
 
 ---
 
@@ -107,15 +107,15 @@ make clean && make all && make run-curses
 ## Success Indicators
 
 ### Part 1 Success:
-- ✅ Colorful text display
-- ✅ Mathematical results shown
-- ✅ Multiple cursor positions
-- ✅ "All tests completed successfully!" message
+- Colorful text display
+- Mathematical results shown
+- Multiple cursor positions
+- "All tests completed successfully!" message
 
 ### Part 2 Success:
-- ✅ Boot to prompt (`> `)
-- ✅ Characters appear as you type
-- ✅ Commands work (`help`, `echo`, etc.)
-- ✅ Screen responds immediately to input
+- Boot to prompt (`> `)
+- Characters appear as you type
+- Commands work (`help`, `echo`, etc.)
+- Screen responds immediately to input
 
 **Both parts demonstrate different aspects of operating system development!**

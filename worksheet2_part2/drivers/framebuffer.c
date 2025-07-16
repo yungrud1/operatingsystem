@@ -36,10 +36,10 @@ void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
  */
 static void fb_move_cursor_internal(unsigned short pos)
 {
-    outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
-    outb(FB_DATA_PORT, ((pos >> 8) & 0x00FF));
-    outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
-    outb(FB_DATA_PORT, pos & 0x00FF);
+    (void)pos; // Unused parameter - cursor is disabled
+    // Disable hardware cursor to prevent white boxes
+    outb(FB_COMMAND_PORT, 0x0A);
+    outb(FB_DATA_PORT, 0x20);
 }
 
 /**
@@ -192,4 +192,24 @@ void fb_newline(void)
         cursor_y = 0;  /* Simple wrap-around */
     }
     fb_move_cursor_internal(cursor_y * FB_WIDTH + cursor_x);
+}
+
+/**
+ * Handle backspace - move cursor back and clear character
+ */
+void fb_backspace(void)
+{
+    if (cursor_x > 0) {
+        cursor_x--;
+        /* Clear the character at this position */
+        fb_write_cell((cursor_y * FB_WIDTH + cursor_x) * 2, ' ', FB_WHITE, FB_BLACK);
+        fb_move_cursor_internal(cursor_y * FB_WIDTH + cursor_x);
+    } else if (cursor_y > 0) {
+        /* Move to end of previous line */
+        cursor_y--;
+        cursor_x = FB_WIDTH - 1;
+        /* Clear the character at this position */
+        fb_write_cell((cursor_y * FB_WIDTH + cursor_x) * 2, ' ', FB_WHITE, FB_BLACK);
+        fb_move_cursor_internal(cursor_y * FB_WIDTH + cursor_x);
+    }
 }

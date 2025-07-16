@@ -1,6 +1,5 @@
-# Makefile for Operating System Kernel
-# Builds a minimal OS kernel that writes 0xCAFEBABE to the eax register
-# Extended to support C functions called from assembly
+# Makefile for Operating System Kernel - Part 1: Framebuffer I/O
+# Builds a minimal OS kernel with framebuffer functionality and C function testing
 
 # Compiler and tools
 NASM = nasm
@@ -24,18 +23,6 @@ FRAMEBUFFER_C = $(DRIVERS_DIR)/framebuffer.c
 FRAMEBUFFER_OBJ = $(DRIVERS_DIR)/framebuffer.o
 IO_ASM = $(DRIVERS_DIR)/io.asm
 IO_OBJ = $(DRIVERS_DIR)/io.o
-INTERRUPTS_C = $(DRIVERS_DIR)/interrupts.c
-INTERRUPTS_OBJ = $(DRIVERS_DIR)/interrupts.o
-KEYBOARD_C = $(DRIVERS_DIR)/keyboard.c
-KEYBOARD_OBJ = $(DRIVERS_DIR)/keyboard.o
-PIC_C = $(DRIVERS_DIR)/pic.c
-PIC_OBJ = $(DRIVERS_DIR)/pic.o
-INTERRUPT_ASM_S = $(DRIVERS_DIR)/interrupt_asm.s
-INTERRUPT_ASM_OBJ = $(DRIVERS_DIR)/interrupt_asm.o
-INTERRUPT_HANDLERS_S = $(DRIVERS_DIR)/interrupt_handlers.s
-INTERRUPT_HANDLERS_OBJ = $(DRIVERS_DIR)/interrupt_handlers.o
-HARDWARE_INT_S = $(DRIVERS_DIR)/hardware_interrupt_enabler.s
-HARDWARE_INT_OBJ = $(DRIVERS_DIR)/hardware_interrupt_enabler.o
 LINKER_SCRIPT = $(SOURCE_DIR)/link.ld
 KERNEL_ELF = kernel.elf
 ISO_FILE = os.iso
@@ -63,33 +50,9 @@ $(FRAMEBUFFER_OBJ): $(FRAMEBUFFER_C)
 $(IO_OBJ): $(IO_ASM)
 	$(NASM) -f elf $(IO_ASM) -o $(IO_OBJ)
 
-# Build the interrupts C object file
-$(INTERRUPTS_OBJ): $(INTERRUPTS_C)
-	$(GCC) $(CFLAGS) $(INTERRUPTS_C) -o $(INTERRUPTS_OBJ)
-
-# Build the keyboard C object file
-$(KEYBOARD_OBJ): $(KEYBOARD_C)
-	$(GCC) $(CFLAGS) $(KEYBOARD_C) -o $(KEYBOARD_OBJ)
-
-# Build the PIC C object file
-$(PIC_OBJ): $(PIC_C)
-	$(GCC) $(CFLAGS) $(PIC_C) -o $(PIC_OBJ)
-
-# Build the interrupt assembly object file
-$(INTERRUPT_ASM_OBJ): $(INTERRUPT_ASM_S)
-	$(NASM) -f elf $(INTERRUPT_ASM_S) -o $(INTERRUPT_ASM_OBJ)
-
-# Build the interrupt handlers assembly object file
-$(INTERRUPT_HANDLERS_OBJ): $(INTERRUPT_HANDLERS_S)
-	$(NASM) -f elf $(INTERRUPT_HANDLERS_S) -o $(INTERRUPT_HANDLERS_OBJ)
-
-# Build the hardware interrupt enabler assembly object file
-$(HARDWARE_INT_OBJ): $(HARDWARE_INT_S)
-	$(NASM) -f elf $(HARDWARE_INT_S) -o $(HARDWARE_INT_OBJ)
-
-# Link the kernel executable (now includes all components)
-$(KERNEL_ELF): $(LOADER_OBJ) $(KERNEL_OBJ) $(FRAMEBUFFER_OBJ) $(IO_OBJ) $(INTERRUPTS_OBJ) $(KEYBOARD_OBJ) $(PIC_OBJ) $(INTERRUPT_ASM_OBJ) $(INTERRUPT_HANDLERS_OBJ) $(HARDWARE_INT_OBJ) $(LINKER_SCRIPT)
-	$(LD) -T $(LINKER_SCRIPT) -melf_i386 $(LOADER_OBJ) $(KERNEL_OBJ) $(FRAMEBUFFER_OBJ) $(IO_OBJ) $(INTERRUPTS_OBJ) $(KEYBOARD_OBJ) $(PIC_OBJ) $(INTERRUPT_ASM_OBJ) $(INTERRUPT_HANDLERS_OBJ) $(HARDWARE_INT_OBJ) -o $(KERNEL_ELF)
+# Link the kernel executable (basic version - framebuffer only)
+$(KERNEL_ELF): $(LOADER_OBJ) $(KERNEL_OBJ) $(FRAMEBUFFER_OBJ) $(IO_OBJ) $(LINKER_SCRIPT)
+	$(LD) -T $(LINKER_SCRIPT) -melf_i386 $(LOADER_OBJ) $(KERNEL_OBJ) $(FRAMEBUFFER_OBJ) $(IO_OBJ) -o $(KERNEL_ELF)
 
 # Copy kernel to ISO directory structure
 $(ISO_DIR)/boot/$(KERNEL_ELF): $(KERNEL_ELF)
@@ -151,7 +114,7 @@ check-log:
 
 # Clean up generated files
 clean:
-	rm -f $(LOADER_OBJ) $(KERNEL_OBJ) $(FRAMEBUFFER_OBJ) $(IO_OBJ) $(PIC_OBJ) $(INTERRUPTS_OBJ) $(KEYBOARD_OBJ) $(INTERRUPT_ASM_OBJ) $(INTERRUPT_HANDLERS_OBJ) $(HARDWARE_INTERRUPT_ENABLER_OBJ) $(KERNEL_ELF) $(ISO_FILE) $(LOG_FILE)
+	rm -f $(LOADER_OBJ) $(KERNEL_OBJ) $(FRAMEBUFFER_OBJ) $(IO_OBJ) $(KERNEL_ELF) $(ISO_FILE) $(LOG_FILE)
 	rm -f $(ISO_DIR)/boot/$(KERNEL_ELF)
 
 # Show directory structure
@@ -164,7 +127,7 @@ show-structure:
 
 # Help target
 help:
-	@echo "Available targets:"
+	@echo "Available targets for Worksheet 2 Part 1:"
 	@echo "  all           - Build the complete OS ISO image (default)"
 	@echo "  run           - Build and run the OS in QEMU emulator"
 	@echo "  run-curses    - Run the OS in QEMU curses mode for framebuffer testing"
@@ -173,15 +136,19 @@ help:
 	@echo "  show-structure - Display the directory structure"
 	@echo "  help          - Show this help message"
 	@echo ""
+	@echo "Part 1 Features:"
+	@echo "  - Framebuffer I/O with VGA text mode"
+	@echo "  - Color display support (16 colors)"
+	@echo "  - Cursor positioning"
+	@echo "  - C function testing"
+	@echo ""
 	@echo "Usage:"
-	@echo "  make          - Build the OS with framebuffer I/O support"
-	@echo "  make run-curses - Run with framebuffer display (use telnet localhost 45454 to quit)"
-	@echo "  make check-log - Verify C functions executed correctly"
+	@echo "  make run-curses - Run with framebuffer display"
+	@echo "  make check-log  - Verify C functions executed correctly"
 	@echo ""
 	@echo "C Functions implemented:"
 	@echo "  sum_of_three(1,2,3)  - Returns 6"
 	@echo "  factorial(5)         - Returns 120"
 	@echo "  fibonacci(10)        - Returns 55"
-	@echo "  power(2,8)           - Returns 256"
 
 .PHONY: all run clean show-structure help check-log

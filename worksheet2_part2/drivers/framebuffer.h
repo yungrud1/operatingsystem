@@ -55,5 +55,6 @@ void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg);
 void fb_write_char(char c, unsigned char fg, unsigned char bg);
 void fb_putchar(u8int c);
 void fb_newline(void);
+void fb_backspace(void);
 
 #endif /* INCLUDE_FRAMEBUFFER_H */

@@ -1,0 +1,26 @@
+# Generated object files
+*.o
+
+# Generated executables
+*.elf
+kernel.elf
+
+# Generated ISO image
+*.iso
+os.iso
+
+# QEMU log files
+*.txt
+logQ.txt
+
+# Backup files
+*~
+*.bak
+
+# Editor temporary files
+.*.swp
+.*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db

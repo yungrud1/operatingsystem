@@ -28,7 +28,7 @@ This document describes the implementation and testing of assembly language prog
 - Simple output using `print_int`
 
 **Testing Results:**
-- ✅ Correct calculation: 15 + 6 = 21
+- Correct calculation: 15 + 6 = 21
 
 ### Task 2: Advanced Programs with Loops and Arrays
 
@@ -41,9 +41,9 @@ This document describes the implementation and testing of assembly language prog
 - Error handling for values outside valid range
 
 **Testing Results:**
-- ✅ Valid input (75 times): Successfully printed "Welcome, Rudi!" 75 times
-- ❌ Too small (25): Displayed error "Error: Number too small (must be >= 51)"
-- ❌ Too large (150): Displayed error "Error: Number too large (must be <= 99)"
+- Valid input (75 times): Successfully printed "Welcome, Rudi!" 75 times
+- Too small (25): Displayed error "Error: Number too small (must be >= 51)"
+- Too large (150): Displayed error "Error: Number too large (must be <= 99)"
 
 #### Program 2: Array Initialization and Sum
 **Description:** Creates an array of 100 elements, initializes it with values 1-100, and calculates the sum.
@@ -54,8 +54,8 @@ This document describes the implementation and testing of assembly language prog
 - Displays the total sum
 
 **Testing Results:**
-- ✅ Array sum calculation: Correctly calculated sum as 5050
-- ✅ Mathematical verification: Sum of 1+2+...+100 = n(n+1)/2 = 100×101/2 = 5050 ✓
+- Array sum calculation: Correctly calculated sum as 5050
+- Mathematical verification: Sum of 1+2+...+100 = n(n+1)/2 = 100×101/2 = 5050
 
 #### Program 3: Range Sum
 **Description:** Extends Program 2 to allow user to specify a range within the array (1-100) and calculates the sum of that range.
@@ -66,9 +66,9 @@ This document describes the implementation and testing of assembly language prog
 - Calculates sum of specified range from the initialized array
 
 **Testing Results:**
-- ✅ Valid range (10-50): Correctly calculated sum as 1230
-- ✅ Small range (1-5): Correctly calculated sum as 15 (1+2+3+4+5)
-- ❌ Invalid range (101-102): Displayed error "Error: Invalid range"
+- Valid range (10-50): Correctly calculated sum as 1230
+- Small range (1-5): Correctly calculated sum as 15 (1+2+3+4+5)
+- Invalid range (101-102): Displayed error "Error: Invalid range"
 
 ## Technical Implementation Details
 
@@ -148,11 +148,11 @@ The implementation mirrors the hello.c example structure, adapted for assembly p
 - `make clean` - Removes all generated object files and executables
 
 #### Testing Results:
-- ✅ `make` builds both programs successfully using the default `all` target
-- ✅ `make task1` builds only task1 executable
-- ✅ `make task2` builds only task2 executable
-- ✅ `make clean` removes all generated files
-- ✅ Each rule contains complete build commands as specified in the task requirements
+- `make` builds both programs successfully using the default `all` target
+- `make task1` builds only task1 executable
+- `make task2` builds only task2 executable
+- `make clean` removes all generated files
+- Each rule contains complete build commands as specified in the task requirements
 
 ## Project Summary
 
@@ -175,18 +175,18 @@ This assembly programming project demonstrates a progression through fundamental
 - **Key Features:** Follows basic make rule format, eliminates manual compilation steps
 
 ### Understanding Demonstrated
-- ✅ **Assembly Structure:** Proper use of data, BSS, and text segments
-- ✅ **Memory Management:** Direct memory access and pointer arithmetic
-- ✅ **Control Flow:** Loops, conditionals, and subroutine organization
-- ✅ **Build Systems:** Understanding of make dependencies and target rules
-- ✅ **Error Handling:** Input validation and user-friendly error messages
+- **Assembly Structure:** Proper use of data, BSS, and text segments
+- **Memory Management:** Direct memory access and pointer arithmetic
+- **Control Flow:** Loops, conditionals, and subroutine organization
+- **Build Systems:** Understanding of make dependencies and target rules
+- **Error Handling:** Input validation and user-friendly error messages
 
 ### Repository Structure
 The project contains source files (`task1.asm`, `task2.asm`), build configuration (`Makefile`), supporting files (`driver.c`, `asm_io.*`), and this documentation demonstrating comprehensive understanding of assembly programming fundamentals.
 
 ## Program Execution Results
 
-### 🚀 Task 1 Output
+### Task 1 Output
 ```bash
 $ make task1
 nasm -f elf32 task1.asm -o task1.o
@@ -197,9 +197,9 @@ $ ./task1
 21
 ```
 
-### 🚀 Task 2 Output Examples
+### Task 2 Output Examples
 
-**✅ Example 1: Valid Input**
+**Example 1: Valid Input**
 ```bash
 $ ./task2
 Enter your name: Rudi
@@ -215,7 +215,7 @@ Enter end of range (1-100): 50
 Sum of range: 1230
 ```
 
-**❌ Example 2: Error Handling**
+**Example 2: Error Handling**
 ```bash
 $ ./task2
 Enter your name: Test
@@ -229,7 +229,7 @@ Enter end of range (1-100): 102
 Error: Invalid range
 ```
 
-### 🔧 Makefile Usage Examples
+### Makefile Usage Examples
 ```bash
 $ make clean
 rm -f *.o task1 task2
@@ -306,12 +306,12 @@ mov ebx, user_name          ; buffer pointer
 
 ## Screenshots and Demonstrations
 
-### 1. 🔨 Build Process
+### 1. Build Process
 **Complete compilation with make:**
 ![Build Process](images/make1_2.png)
 *Screenshot showing make compilation process for both task1 and task2*
 
-### 2. ▶️ Program Execution
+### 2. Program Execution
 
 **Task 1 Output:**
 ![Task 1 Execution](images/task1-output.png)
@@ -321,7 +321,7 @@ mov ebx, user_name          ; buffer pointer
 ![Task 2 Valid Input](images/task2-valid.png)
 *Screenshot showing task2 with valid name, loop count (51-99), and array operations*
 
-### 3. ⚠️ Error Handling Validation
+### 3. Error Handling Validation
 
 **Input Too Small:**
 ![Input Too Small Error](images/error-too-small.png)
@@ -335,7 +335,7 @@ mov ebx, user_name          ; buffer pointer
 ![Invalid Range Error](images/error-invaild-range.png)
 *Screenshot showing error for invalid array range*
 
-### 4. 🧮 Mathematical Verification
+### 4. Mathematical Verification
 
 **Array Sum Calculation:**
 ![Array Sum](images/array-sum.png)

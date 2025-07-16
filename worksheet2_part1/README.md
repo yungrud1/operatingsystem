@@ -60,7 +60,7 @@ worksheet2/
                    └──────────────┘    └─────────────────┘
 ```
 
-## 🚀 Quick Start & Usage
+## Quick Start & Usage
 
 ### **Build the Complete Operating System**
 ```bash
@@ -99,7 +99,7 @@ make check-log
 ```
 *Confirms C functions executed correctly (looks for `deadbeef` in EAX register)*
 
-## 🔧 Technical Implementation Deep Dive
+## Technical Implementation Deep Dive
 
 ### **1. Framebuffer Driver Architecture**
 
@@ -255,7 +255,7 @@ objdump -h kernel.elf                 # Section analysis
 hexdump -C kernel.elf | head -20      # Multiboot header verification
 ```
 
-## 🎨 Framebuffer API Demonstration
+## Framebuffer API Demonstration
 
 ### **Color System Implementation**
 ```c
@@ -291,7 +291,7 @@ fb_write_string("Status Line", FB_LIGHT_GREY, FB_BLACK);
 ![Cursor Positioning](images/cursor-positioning.png)
 *Screenshot: Text positioned at different screen coordinates*
 
-## 📖 Available Commands & Testing
+## Available Commands & Testing
 
 | Command | Purpose | Expected Output |
 |---------|---------|-----------------|
@@ -302,7 +302,7 @@ fb_write_string("Status Line", FB_LIGHT_GREY, FB_BLACK);
 | `make clean` | Remove build files | Cleans all generated objects and images |
 | `make help` | Show all targets | Lists available commands |
 
-## 🧪 Testing Results & Verification
+## Testing Results & Verification
 
 ### **Successful Boot Sequence**
 1. **GRUB Loading**: Bootloader finds and loads kernel
@@ -329,7 +329,7 @@ $ make check-log
 ![Success Verification](images/success-log.png)
 *Screenshot: Terminal showing successful execution verification*
 
-## 🔍 Troubleshooting & Common Issues
+## Troubleshooting & Common Issues
 
 ### **Build Problems**
 ```bash
@@ -362,7 +362,7 @@ hexdump -C kernel.elf | grep -A2 -B2 "02 b0 ad 1b"
 qemu-system-i386 -boot d -cdrom os.iso -m 32
 ```
 
-## 💡 Key Programming Concepts Demonstrated
+## Key Programming Concepts Demonstrated
 
 ### **Low-Level Systems Programming**
 - **Freestanding Environment**: Programming without standard library or OS
@@ -382,7 +382,7 @@ qemu-system-i386 -boot d -cdrom os.iso -m 32
 - **Testing Strategy**: Comprehensive function verification
 - **Build Automation**: Complex multi-step compilation pipeline
 
-## 🎓 Educational Value & Real-World Applications
+## Educational Value & Real-World Applications
 
 ### **Industry Relevance**
 This project demonstrates skills directly applicable to:
@@ -404,7 +404,7 @@ This project demonstrates skills directly applicable to:
 ![Educational Diagram](images/learning-architecture.png)
 *Diagram: How this project relates to broader computer science concepts*
 
-## 🔄 Future Development Opportunities
+## Future Development Opportunities
 
 ### **Immediate Extensions**
 - **Keyboard Input**: Implementing keyboard interrupt handlers
@@ -424,7 +424,7 @@ This project demonstrates skills directly applicable to:
 - **Security Features**: Secure boot and isolation mechanisms
 - **Performance Optimization**: Assembly optimization and profiling
 
-## 📚 Technical References & Documentation
+## Technical References & Documentation
 
 ### **Core Specifications**
 - [Multiboot Specification](https://www.gnu.org/software/grub/manual/multiboot/multiboot.html) - GRUB bootloader interface
@@ -446,7 +446,7 @@ This project demonstrates skills directly applicable to:
 
 ---
 
-## 🏆 Project Summary
+## Project Summary
 
 This project successfully demonstrates the implementation of a **complete operating system kernel with framebuffer I/O capabilities**. Starting from bare metal hardware, the system:
 
